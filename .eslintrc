@@ -67,7 +67,7 @@
 		"arrow-body-style": [2, "as-needed"],
 		"block-scoped-var": [0],
 		"callback-return": [2, ["callback"]],
-		"camelcase": [2],
+		"camelcase": [2, {"properties": "never"}],
 		"capitalized-comments": [0],
 		"class-methods-use-this": [2, {"exceptMethods": []}],
 		"complexity": [2, 20],
@@ -452,7 +452,16 @@
 		"import/no-mutable-exports": "error",
 		"import/no-named-as-default-member": "error",
 		"import/no-named-as-default": "error",
-		"import/order": "error",
+		"@typescript-eslint/no-unnecessary-condition": "off",
+		"line-comment-position": "off",
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "parent", "sibling", "index"],
+				"newlines-between": "never"
+			}
+		],
+		"@shopify/strict-component-boundaries": "off",
 		"import/no-absolute-path": "error",
 		"import/no-anonymous-default-export": "error",
 		"import/no-named-default": "error",
@@ -460,6 +469,7 @@
 		"import/no-self-import": "error",
 		"import/prefer-default-export": "off",
 		"import/no-default-export": "error",
+		"import/no-unused-modules": "off",
 		"react/jsx-props-no-spreading": "off",
 		"import/no-cycle": [
 			"error",
