@@ -12,8 +12,51 @@ $ npm i --dev @pnxdxt/eslint-config
 
 ```json
 {
-	"extends": ["@pnxdxt/eslint-config"]
+	"extends": ["@pnxdxt/eslint-config"],
+	"settings": {
+		"tailwindcss": {
+			"config": "tailwind.config.js"
+		}
+	},
+	"overrides": [
+		{
+			"files": ["pages/*", "pages/**/*"],
+			"rules": {
+				"import/no-default-export": "off"
+			}
+		}
+	]
 }
+```
+
+Auto-fix in vscode: update settings.json
+
+```json
+{
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": [
+		"source.addMissingImports",
+		"source.fixAll.eslint"
+	]
+}
+```
+
+Ignore paths: update .eslintignore
+
+```
+**/node_modules/*
+**/out/*
+**/.next/*
+
+pnpm-lock.yaml
+next-env.d.ts
+shopify/graphql/schema.ts
+
+*.mjs
+*.cjs
 ```
 
 ## License

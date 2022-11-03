@@ -11,6 +11,17 @@ module.exports = {
 			jsx: true,
 		},
 	},
+	settings: {
+		react: {
+			version: 'detect',
+		},
+		tailwindcss: {
+			config: 'tailwind.config.js',
+		},
+		'import/resolver': {
+			typescript: {},
+		},
+	},
 	plugins: [
 		'prefer-arrow',
 		'react',
@@ -29,24 +40,19 @@ module.exports = {
 		'airbnb-typescript',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
+		'plugin:@shopify/esnext',
+		'plugin:@shopify/typescript',
+		'plugin:@shopify/typescript-type-checking',
+		'plugin:@shopify/react',
 		'xo-react',
+		'xo-typescript',
 		'plugin:promise/recommended',
 		'plugin:unicorn/recommended',
 		'plugin:@next/next/recommended',
 		'plugin:tailwindcss/recommended',
+		'plugin:@shopify/prettier',
 		'plugin:prettier/recommended',
 	],
-	settings: {
-		react: {
-			version: 'detect',
-		},
-		tailwindcss: {
-			config: 'tailwind.config.cjs',
-		},
-		'import/resolver': {
-			typescript: {},
-		},
-	},
 	rules: {
 		'accessor-pairs': [
 			2,
@@ -57,7 +63,7 @@ module.exports = {
 			},
 		],
 		'array-callback-return': [2],
-		'array-element-newline': [2, 'consistent'],
+		'array-element-newline': 'off',
 		'arrow-body-style': [2, 'as-needed'],
 		'block-scoped-var': [0],
 		'callback-return': [2, ['callback']],
@@ -89,7 +95,15 @@ module.exports = {
 		'handle-callback-err': [0],
 		'id-blacklist': [0],
 		'id-denylist': [2, 'native'],
-		'id-length': [2, {min: 1, max: 30, properties: 'never'}],
+		'id-length': [
+			2,
+			{
+				min: 2,
+				max: 30,
+				properties: 'never',
+				exceptions: ['_', 'i', 'j', 'k', 'x', 'y', 'z'],
+			},
+		],
 		'id-match': [0],
 		'init-declarations': [0, 'always'],
 		'max-depth': [2, 4],
@@ -150,6 +164,7 @@ module.exports = {
 		'no-dupe-class-members': [2],
 		'no-dupe-else-if': [2],
 		'no-dupe-keys': [2],
+		'no-duplicate-imports': [0],
 		'no-duplicate-case': [2],
 		'no-else-return': [2],
 		'no-empty': [2, {allowEmptyCatch: true}],
@@ -262,7 +277,7 @@ module.exports = {
 		'no-self-compare': [0],
 		'no-setter-return': [2],
 		'no-sequences': [2, {allowInParentheses: false}],
-		'no-shadow': [2, {builtinGlobals: false, hoist: 'functions', allow: []}],
+		'no-shadow': 'off',
 		'no-shadow-restricted-names': [2],
 		'no-sparse-arrays': [2],
 		'no-tabs': [0],
@@ -298,7 +313,8 @@ module.exports = {
 		],
 		'no-unused-labels': [2],
 		'no-unused-private-class-members': [2],
-		'no-unused-vars': [2, {vars: 'all', args: 'after-used'}],
+		'no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': 'error',
 		'no-useless-backreference': [2],
 		'no-useless-call': [2],
 		'no-useless-catch': [2],
@@ -403,7 +419,6 @@ module.exports = {
 		'@typescript-eslint/no-unsafe-call': 'warn',
 		'@typescript-eslint/no-unsafe-return': 'warn',
 		'@typescript-eslint/no-unsafe-member-access': 'warn',
-		'@typescript-eslint/ban-types': 'warn',
 		'@typescript-eslint/consistent-type-imports': 'warn',
 		'@typescript-eslint/triple-slash-reference': 'warn',
 		'@typescript-eslint/naming-convention': [
@@ -422,34 +437,8 @@ module.exports = {
 			},
 		],
 		'no-underscore-dangle': 'off',
-		'unicorn/no-array-callback-reference': 'off',
 		'prefer-arrow-callback': ['error', {allowNamedFunctions: true}],
 		'func-style': ['error', 'expression', {allowArrowFunctions: true}],
-		'unicorn/prefer-top-level-await': 'off',
-		'unicorn/prefer-node-protocol': 'off',
-		'unicorn/filename-case': 'warn',
-		'unicorn/no-array-reduce': 'off',
-		'unicorn/no-new-array': 'warn',
-		'unicorn/prefer-native-coercion-functions': 'off',
-		'unicorn/consistent-destructuring': 'off',
-		'unicorn/no-null': 'off',
-		'unicorn/prefer-ternary': ['error', 'only-single-line'],
-		'unicorn/prefer-json-parse-buffer': 'off',
-		'unicorn/prevent-abbreviations': 'off',
-		'unicorn/consistent-function-scoping': 'off',
-		'unicorn/no-useless-undefined': 'off',
-		'unicorn/better-regex': [
-			'error',
-			{
-				sortCharacterClasses: false,
-			},
-		],
-		'unicorn/template-indent': [
-			'warn',
-			{
-				indent: '\t',
-			},
-		],
 		'import/default': 'error',
 		'import/export': 'error',
 		'import/extensions': 'off',
@@ -534,7 +523,6 @@ module.exports = {
 		],
 		'jsx-quotes': ['error', 'prefer-single'],
 		'react/button-has-type': 'error',
-		'react/jsx-child-element-spacing': 'error',
 		'react/default-props-match-prop-types': 'error',
 		'react/hook-use-state': 'error',
 		'react/iframe-missing-sandbox': 'error',
@@ -569,7 +557,7 @@ module.exports = {
 		'react/jsx-boolean-value': 'error',
 		'react/jsx-curly-spacing': ['error', 'never'],
 		'react/jsx-equals-spacing': ['error', 'never'],
-		'react/jsx-indent-props': ['error', 'tab'],
+		'react/jsx-indent-props': 'off',
 		'react-hooks/rules-of-hooks': 'error',
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/jsx-first-prop-new-line': 'off',
@@ -606,13 +594,6 @@ module.exports = {
 			'error',
 			{
 				allow: ['FormattedNumber'],
-			},
-		],
-		'react/jsx-curly-newline': [
-			'error',
-			{
-				multiline: 'consistent',
-				singleline: 'forbid',
 			},
 		],
 		'react/jsx-indent': [
@@ -682,13 +663,16 @@ module.exports = {
 				prop: 'ignore',
 			},
 		],
-		'react/jsx-closing-bracket-location': [
+		'@typescript-eslint/no-misused-promises': [
 			'error',
 			{
-				nonEmpty: 'tag-aligned',
-				selfClosing: false,
+				checksVoidReturn: {
+					arguments: false,
+					attributes: false,
+				},
 			},
 		],
+		'react/jsx-closing-bracket-location': 'off',
 		'react/boolean-prop-naming': [
 			'warn',
 			{
@@ -732,13 +716,102 @@ module.exports = {
 			},
 		],
 		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+		'@typescript-eslint/prefer-nullish-coalescing': [
+			'error',
+			{
+				ignoreTernaryTests: false,
+				ignoreConditionalTests: true,
+				ignoreMixedLogicalExpressions: true,
+			},
+		],
+		'@typescript-eslint/no-redundant-type-constituents': 'off',
+		'@typescript-eslint/ban-types': [
+			'error',
+			{
+				extendDefaults: false,
+				types: {
+					String: {
+						message: 'Use `string` instead.',
+						fixWith: 'string',
+					},
+					Number: {
+						message: 'Use `number` instead.',
+						fixWith: 'number',
+					},
+					Boolean: {
+						message: 'Use `boolean` instead.',
+						fixWith: 'boolean',
+					},
+					Symbol: {
+						message: 'Use `symbol` instead.',
+						fixWith: 'symbol',
+					},
+					BigInt: {
+						message: 'Use `bigint` instead.',
+						fixWith: 'bigint',
+					},
+					Object: {
+						message:
+							'The `Object` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead. See https://github.com/typescript-eslint/typescript-eslint/pull/848',
+						fixWith: 'Record<string, unknown>',
+					},
+					'{}': {
+						message:
+							'The `{}` type is mostly the same as `unknown`. You probably want `Record<string, unknown>` instead.',
+						fixWith: 'Record<string, unknown>',
+					},
+					object: {
+						message:
+							'The `object` type is hard to use. Use `Record<string, unknown>` instead. See: https://github.com/typescript-eslint/typescript-eslint/pull/848',
+						fixWith: 'Record<string, unknown>',
+					},
+					Function: 'Use a specific function type instead, like `() => void`.',
+					'[]': "Don't use the empty array type `[]`. It only allows empty arrays. Use `SomeType[]` instead.",
+					'[[]]':
+						"Don't use `[[]]`. It only allows an array with a single element which is an empty array. Use `SomeType[][]` instead.",
+					'[[[]]]': "Don't use `[[[]]]`. Use `SomeType[][][]` instead.",
+					'[[[[]]]]': 'ur drunk 🤡',
+					'[[[[[]]]]]': '🦄💥',
+				},
+			},
+		],
+		'unicorn/no-array-callback-reference': 'off',
+		'unicorn/prefer-top-level-await': 'off',
+		'unicorn/prefer-node-protocol': 'off',
+		'unicorn/filename-case': 'warn',
+		'unicorn/no-array-reduce': 'off',
+		'unicorn/no-new-array': 'warn',
+		'unicorn/prefer-native-coercion-functions': 'off',
+		'unicorn/consistent-destructuring': 'off',
+		'unicorn/no-null': 'off',
+		'unicorn/prefer-ternary': ['error', 'only-single-line'],
+		'unicorn/prefer-json-parse-buffer': 'off',
+		'unicorn/prevent-abbreviations': 'off',
+		'unicorn/consistent-function-scoping': 'off',
+		'unicorn/no-useless-undefined': 'off',
+		'unicorn/better-regex': [
+			'error',
+			{
+				sortCharacterClasses: false,
+			},
+		],
+		'unicorn/template-indent': [
+			'warn',
+			{
+				indent: '\t',
+			},
+		],
+		'react/jsx-curly-newline': 'off',
+		'react/jsx-child-element-spacing': 'off',
 		'unicorn/no-array-method-this-argument': 'off',
 		'unicorn/no-thenable': 'off',
+		'unicorn/prefer-module': 'off',
+		'@shopify/jsx-no-hardcoded-content': 'off',
 		'prettier/prettier': 'error',
 	},
 	overrides: [
 		{
-			files: ['src/pages/*', 'src/pages/**/*'],
+			files: ['pages/*', 'pages/**/*', 'src/pages/*', 'src/pages/**/*'],
 			rules: {
 				'import/no-default-export': 'off',
 			},
