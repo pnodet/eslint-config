@@ -53,7 +53,6 @@ Ignore paths: update .eslintignore
 
 pnpm-lock.yaml
 next-env.d.ts
-shopify/graphql/schema.ts
 
 *.mjs
 *.cjs
