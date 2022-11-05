@@ -17,15 +17,7 @@ $ npm i --dev @pnxdxt/eslint-config
 		"tailwindcss": {
 			"config": "tailwind.config.js"
 		}
-	},
-	"overrides": [
-		{
-			"files": ["pages/*", "pages/**/*"],
-			"rules": {
-				"import/no-default-export": "off"
-			}
-		}
-	]
+	}
 }
 ```
 
