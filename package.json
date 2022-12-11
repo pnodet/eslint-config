@@ -1,6 +1,6 @@
 {
 	"name": "@pnxdxt/eslint-config",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "ESLint shareable config for Next.js",
 	"license": "MIT",
 	"main": "index.js",
@@ -11,10 +11,7 @@
 		"LICENSE",
 		"README.md",
 		"index.js",
-		"lib/defaults.js",
-		"lib/with-next.js",
-		"lib/with-react.js",
-		"lib/with-tailwindcss.js"
+		"lib"
 	],
 	"scripts": {},
 	"dependencies": {
