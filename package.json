@@ -14,7 +14,9 @@
 		"fast.js",
 		"lib"
 	],
-	"scripts": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\""
+	},
 	"dependencies": {
 		"@babel/core": "^7.21.4",
 		"@next/eslint-plugin-next": "^13.3.0",
