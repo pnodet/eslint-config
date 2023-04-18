@@ -1,6 +1,6 @@
 {
 	"name": "@pnxdxt/eslint-config",
-	"version": "3.7.0",
+	"version": "4.0.0",
 	"description": "ESLint shareable config for Next.js",
 	"license": "MIT",
 	"main": "index.js",
